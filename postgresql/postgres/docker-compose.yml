@@ -1,0 +1,28 @@
+services:
+  postgres:
+    image: postgres:12.13-bullseye
+    restart: always
+    container_name: postgres
+    labels:
+       com.hacom.name: "postgres"
+    # network_mode: host
+    ports:
+      - 5432:5432
+    environment:
+    - TZ=America/Lima
+    - POSTGRES_PASSWORD=rw,.12a
+      
+    volumes:
+      - /opt/postgres:/var/lib/postgresql/data
+      - /data/postgres:/data
+    logging:  
+      driver: "json-file"
+      options:
+        max-size: "500k"
+        max-file: "10"
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8082:8080
