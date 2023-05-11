@@ -2,3 +2,5 @@
 Vagrantfile
 hosts
 id_rsa.pub
+bootstrap.sh
+
