@@ -8,7 +8,7 @@ import re
 import psycopg2
 
 # change url postgresql
-conn_string = 'postgresql://postgres:rw,.12a@192.168.217.110/postgres'
+conn_string = 'postgresql://postgres:rw,.12a@34.173.85.2/postgres'
 db = create_engine(conn_string)
 conn = db.connect()
 conn_psycopg2 = psycopg2.connect(database="postgres",
