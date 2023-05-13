@@ -5,6 +5,7 @@ import pandas_datareader.data as web
 import datetime
 from sqlalchemy import create_engine
 import re
+import pandas as pd
 
 
 # change url postgresql
@@ -53,6 +54,9 @@ for label in fred_labels:
 
 # date table
 df = stock_data.reset_index().rename(columns={'Date':'date'})[['date']]
+date_range = pd.date_range(start=df['date'].max()+pd.Timedelta(days=1), end=df['date'].max()+pd.Timedelta(days=10), freq='D')
+df = pd.concat([df, pd.DataFrame({'date': date_range})], ignore_index=True)
+
 df.to_sql('date_table', con=conn, if_exists='replace', index=False)
 conn.commit()
 print(f"Wrote data to Table date_table, rows: {df.shape[0]}")
