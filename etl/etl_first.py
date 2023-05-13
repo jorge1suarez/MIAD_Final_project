@@ -50,5 +50,13 @@ for label in fred_labels:
     conn.commit()
     print(f"Wrote data to Table {table_name}, rows: {df.shape[0]}")
 
+
+# date table
+df = stock_data.reset_index().rename(columns={'Date':'date'})[['date']]
+df.to_sql('date_table', con=conn, if_exists='replace', index=False)
+conn.commit()
+print(f"Wrote data to Table date_table, rows: {df.shape[0]}")
+
+
 print("Done")
 conn.close()
