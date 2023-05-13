@@ -11,7 +11,7 @@ sql = ""
 for ticker in tickers:
     table_name = "ts_" + re.sub(r'\W+', '', ticker).lower() # remove special characters from ticker and lower case
 
-    sql += f'DROP TABLE "{table_name}"\n';
+    sql += f'DROP TABLE "{table_name}";\n'
     sql += f'CREATE TABLE "{table_name}" ( \n' + \
     '\t"date" date primary key, \n' + \
     '\t"open" real, \n' + \
@@ -26,7 +26,7 @@ for ticker in tickers:
 for label in fred_labels:
     table_name = "ts_" + re.sub(r'\W+', '', label).lower() # remove special characters from ticker and lower case
 
-    sql += f'DROP TABLE "{table_name}"\n';
+    sql += f'DROP TABLE "{table_name}";\n'
     sql += f'CREATE TABLE "{table_name}" ( \n' + \
     '\t"date" date primary key, \n' + \
     '\t"value" real \n' + \
@@ -39,7 +39,7 @@ for label in fred_labels:
 for ticker in tickers:
     table_name = "ts_" + re.sub(r'\W+', '', ticker).lower() + "_pred" # remove special characters from ticker and lower case
 
-    sql += f'DROP TABLE "{table_name}"\n';
+    sql += f'DROP TABLE "{table_name}";\n'
     sql += f'CREATE TABLE "{table_name}" ( \n' + \
     '\t"date" date primary key, \n' + \
     '\t"mean" real, \n' + \
@@ -56,7 +56,7 @@ for ticker in tickers:
 for label in fred_labels:
     table_name = "ts_" + re.sub(r'\W+', '', label).lower() + "_pred"# remove special characters from ticker and lower case
 
-    sql += f'DROP TABLE "{table_name}"\n';
+    sql += f'DROP TABLE "{table_name}";\n'
     sql += f'CREATE TABLE "{table_name}" ( \n' + \
     '\t"date" date primary key, \n' + \
     '\t"mean" real, \n' + \
