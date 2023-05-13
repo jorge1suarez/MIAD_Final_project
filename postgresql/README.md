@@ -12,3 +12,22 @@ psql -h 34.173.85.2 -U postgres
 \i init.sql 
 
 ```
+
+#### Useful commands
+
+
+```bash
+# list databases
+\l
+
+# list tables
+\dt
+
+# describe table
+\d table_name
+\d+ table_name
+
+# command history
+\s
+
+```
