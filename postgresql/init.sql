@@ -1,4 +1,4 @@
-DROP TABLE "ts_gspc"
+DROP TABLE "ts_gspc";
 CREATE TABLE "ts_gspc" ( 
 	"date" date primary key, 
 	"open" real, 
@@ -9,7 +9,7 @@ CREATE TABLE "ts_gspc" (
 	"volume" real 
 ); 
 
-DROP TABLE "ts_aapl"
+DROP TABLE "ts_aapl";
 CREATE TABLE "ts_aapl" ( 
 	"date" date primary key, 
 	"open" real, 
@@ -20,7 +20,7 @@ CREATE TABLE "ts_aapl" (
 	"volume" real 
 ); 
 
-DROP TABLE "ts_msft"
+DROP TABLE "ts_msft";
 CREATE TABLE "ts_msft" ( 
 	"date" date primary key, 
 	"open" real, 
@@ -31,7 +31,7 @@ CREATE TABLE "ts_msft" (
 	"volume" real 
 ); 
 
-DROP TABLE "ts_goog"
+DROP TABLE "ts_goog";
 CREATE TABLE "ts_goog" ( 
 	"date" date primary key, 
 	"open" real, 
@@ -42,7 +42,7 @@ CREATE TABLE "ts_goog" (
 	"volume" real 
 ); 
 
-DROP TABLE "ts_googl"
+DROP TABLE "ts_googl";
 CREATE TABLE "ts_googl" ( 
 	"date" date primary key, 
 	"open" real, 
@@ -53,7 +53,7 @@ CREATE TABLE "ts_googl" (
 	"volume" real 
 ); 
 
-DROP TABLE "ts_tsla"
+DROP TABLE "ts_tsla";
 CREATE TABLE "ts_tsla" ( 
 	"date" date primary key, 
 	"open" real, 
@@ -64,7 +64,7 @@ CREATE TABLE "ts_tsla" (
 	"volume" real 
 ); 
 
-DROP TABLE "ts_amzn"
+DROP TABLE "ts_amzn";
 CREATE TABLE "ts_amzn" ( 
 	"date" date primary key, 
 	"open" real, 
@@ -75,7 +75,7 @@ CREATE TABLE "ts_amzn" (
 	"volume" real 
 ); 
 
-DROP TABLE "ts_brka"
+DROP TABLE "ts_brka";
 CREATE TABLE "ts_brka" ( 
 	"date" date primary key, 
 	"open" real, 
@@ -86,7 +86,7 @@ CREATE TABLE "ts_brka" (
 	"volume" real 
 ); 
 
-DROP TABLE "ts_brkb"
+DROP TABLE "ts_brkb";
 CREATE TABLE "ts_brkb" ( 
 	"date" date primary key, 
 	"open" real, 
@@ -97,7 +97,7 @@ CREATE TABLE "ts_brkb" (
 	"volume" real 
 ); 
 
-DROP TABLE "ts_nvda"
+DROP TABLE "ts_nvda";
 CREATE TABLE "ts_nvda" ( 
 	"date" date primary key, 
 	"open" real, 
@@ -108,7 +108,7 @@ CREATE TABLE "ts_nvda" (
 	"volume" real 
 ); 
 
-DROP TABLE "ts_meta"
+DROP TABLE "ts_meta";
 CREATE TABLE "ts_meta" ( 
 	"date" date primary key, 
 	"open" real, 
@@ -119,7 +119,7 @@ CREATE TABLE "ts_meta" (
 	"volume" real 
 ); 
 
-DROP TABLE "ts_unh"
+DROP TABLE "ts_unh";
 CREATE TABLE "ts_unh" ( 
 	"date" date primary key, 
 	"open" real, 
@@ -130,7 +130,7 @@ CREATE TABLE "ts_unh" (
 	"volume" real 
 ); 
 
-DROP TABLE "ts_bzf"
+DROP TABLE "ts_bzf";
 CREATE TABLE "ts_bzf" ( 
 	"date" date primary key, 
 	"open" real, 
@@ -141,7 +141,7 @@ CREATE TABLE "ts_bzf" (
 	"volume" real 
 ); 
 
-DROP TABLE "ts_ngf"
+DROP TABLE "ts_ngf";
 CREATE TABLE "ts_ngf" ( 
 	"date" date primary key, 
 	"open" real, 
@@ -152,7 +152,7 @@ CREATE TABLE "ts_ngf" (
 	"volume" real 
 ); 
 
-DROP TABLE "ts_gcf"
+DROP TABLE "ts_gcf";
 CREATE TABLE "ts_gcf" ( 
 	"date" date primary key, 
 	"open" real, 
@@ -163,7 +163,7 @@ CREATE TABLE "ts_gcf" (
 	"volume" real 
 ); 
 
-DROP TABLE "ts_eurusdx"
+DROP TABLE "ts_eurusdx";
 CREATE TABLE "ts_eurusdx" ( 
 	"date" date primary key, 
 	"open" real, 
@@ -174,7 +174,7 @@ CREATE TABLE "ts_eurusdx" (
 	"volume" real 
 ); 
 
-DROP TABLE "ts_vix"
+DROP TABLE "ts_vix";
 CREATE TABLE "ts_vix" ( 
 	"date" date primary key, 
 	"open" real, 
@@ -185,7 +185,7 @@ CREATE TABLE "ts_vix" (
 	"volume" real 
 ); 
 
-DROP TABLE "ts_ixic"
+DROP TABLE "ts_ixic";
 CREATE TABLE "ts_ixic" ( 
 	"date" date primary key, 
 	"open" real, 
@@ -196,37 +196,37 @@ CREATE TABLE "ts_ixic" (
 	"volume" real 
 ); 
 
-DROP TABLE "ts_effr"
+DROP TABLE "ts_effr";
 CREATE TABLE "ts_effr" ( 
 	"date" date primary key, 
 	"value" real 
 ); 
 
-DROP TABLE "ts_csushpisa"
+DROP TABLE "ts_csushpisa";
 CREATE TABLE "ts_csushpisa" ( 
 	"date" date primary key, 
 	"value" real 
 ); 
 
-DROP TABLE "ts_gdp"
+DROP TABLE "ts_gdp";
 CREATE TABLE "ts_gdp" ( 
 	"date" date primary key, 
 	"value" real 
 ); 
 
-DROP TABLE "ts_cpiaucsl"
+DROP TABLE "ts_cpiaucsl";
 CREATE TABLE "ts_cpiaucsl" ( 
 	"date" date primary key, 
 	"value" real 
 ); 
 
-DROP TABLE "ts_cpilfesl"
+DROP TABLE "ts_cpilfesl";
 CREATE TABLE "ts_cpilfesl" ( 
 	"date" date primary key, 
 	"value" real 
 ); 
 
-DROP TABLE "ts_gspc_pred"
+DROP TABLE "ts_gspc_pred";
 CREATE TABLE "ts_gspc_pred" ( 
 	"date" date primary key, 
 	"mean" real, 
@@ -239,7 +239,7 @@ CREATE TABLE "ts_gspc_pred" (
 	"q90" real 
 ); 
 
-DROP TABLE "ts_aapl_pred"
+DROP TABLE "ts_aapl_pred";
 CREATE TABLE "ts_aapl_pred" ( 
 	"date" date primary key, 
 	"mean" real, 
@@ -252,7 +252,7 @@ CREATE TABLE "ts_aapl_pred" (
 	"q90" real 
 ); 
 
-DROP TABLE "ts_msft_pred"
+DROP TABLE "ts_msft_pred";
 CREATE TABLE "ts_msft_pred" ( 
 	"date" date primary key, 
 	"mean" real, 
@@ -265,7 +265,7 @@ CREATE TABLE "ts_msft_pred" (
 	"q90" real 
 ); 
 
-DROP TABLE "ts_goog_pred"
+DROP TABLE "ts_goog_pred";
 CREATE TABLE "ts_goog_pred" ( 
 	"date" date primary key, 
 	"mean" real, 
@@ -278,7 +278,7 @@ CREATE TABLE "ts_goog_pred" (
 	"q90" real 
 ); 
 
-DROP TABLE "ts_googl_pred"
+DROP TABLE "ts_googl_pred";
 CREATE TABLE "ts_googl_pred" ( 
 	"date" date primary key, 
 	"mean" real, 
@@ -291,7 +291,7 @@ CREATE TABLE "ts_googl_pred" (
 	"q90" real 
 ); 
 
-DROP TABLE "ts_tsla_pred"
+DROP TABLE "ts_tsla_pred";
 CREATE TABLE "ts_tsla_pred" ( 
 	"date" date primary key, 
 	"mean" real, 
@@ -304,7 +304,7 @@ CREATE TABLE "ts_tsla_pred" (
 	"q90" real 
 ); 
 
-DROP TABLE "ts_amzn_pred"
+DROP TABLE "ts_amzn_pred";
 CREATE TABLE "ts_amzn_pred" ( 
 	"date" date primary key, 
 	"mean" real, 
@@ -317,7 +317,7 @@ CREATE TABLE "ts_amzn_pred" (
 	"q90" real 
 ); 
 
-DROP TABLE "ts_brka_pred"
+DROP TABLE "ts_brka_pred";
 CREATE TABLE "ts_brka_pred" ( 
 	"date" date primary key, 
 	"mean" real, 
@@ -330,7 +330,7 @@ CREATE TABLE "ts_brka_pred" (
 	"q90" real 
 ); 
 
-DROP TABLE "ts_brkb_pred"
+DROP TABLE "ts_brkb_pred";
 CREATE TABLE "ts_brkb_pred" ( 
 	"date" date primary key, 
 	"mean" real, 
@@ -343,7 +343,7 @@ CREATE TABLE "ts_brkb_pred" (
 	"q90" real 
 ); 
 
-DROP TABLE "ts_nvda_pred"
+DROP TABLE "ts_nvda_pred";
 CREATE TABLE "ts_nvda_pred" ( 
 	"date" date primary key, 
 	"mean" real, 
@@ -356,7 +356,7 @@ CREATE TABLE "ts_nvda_pred" (
 	"q90" real 
 ); 
 
-DROP TABLE "ts_meta_pred"
+DROP TABLE "ts_meta_pred";
 CREATE TABLE "ts_meta_pred" ( 
 	"date" date primary key, 
 	"mean" real, 
@@ -369,7 +369,7 @@ CREATE TABLE "ts_meta_pred" (
 	"q90" real 
 ); 
 
-DROP TABLE "ts_unh_pred"
+DROP TABLE "ts_unh_pred";
 CREATE TABLE "ts_unh_pred" ( 
 	"date" date primary key, 
 	"mean" real, 
@@ -382,7 +382,7 @@ CREATE TABLE "ts_unh_pred" (
 	"q90" real 
 ); 
 
-DROP TABLE "ts_bzf_pred"
+DROP TABLE "ts_bzf_pred";
 CREATE TABLE "ts_bzf_pred" ( 
 	"date" date primary key, 
 	"mean" real, 
@@ -395,7 +395,7 @@ CREATE TABLE "ts_bzf_pred" (
 	"q90" real 
 ); 
 
-DROP TABLE "ts_ngf_pred"
+DROP TABLE "ts_ngf_pred";
 CREATE TABLE "ts_ngf_pred" ( 
 	"date" date primary key, 
 	"mean" real, 
@@ -408,7 +408,7 @@ CREATE TABLE "ts_ngf_pred" (
 	"q90" real 
 ); 
 
-DROP TABLE "ts_gcf_pred"
+DROP TABLE "ts_gcf_pred";
 CREATE TABLE "ts_gcf_pred" ( 
 	"date" date primary key, 
 	"mean" real, 
@@ -421,7 +421,7 @@ CREATE TABLE "ts_gcf_pred" (
 	"q90" real 
 ); 
 
-DROP TABLE "ts_eurusdx_pred"
+DROP TABLE "ts_eurusdx_pred";
 CREATE TABLE "ts_eurusdx_pred" ( 
 	"date" date primary key, 
 	"mean" real, 
@@ -434,7 +434,7 @@ CREATE TABLE "ts_eurusdx_pred" (
 	"q90" real 
 ); 
 
-DROP TABLE "ts_vix_pred"
+DROP TABLE "ts_vix_pred";
 CREATE TABLE "ts_vix_pred" ( 
 	"date" date primary key, 
 	"mean" real, 
@@ -447,7 +447,7 @@ CREATE TABLE "ts_vix_pred" (
 	"q90" real 
 ); 
 
-DROP TABLE "ts_ixic_pred"
+DROP TABLE "ts_ixic_pred";
 CREATE TABLE "ts_ixic_pred" ( 
 	"date" date primary key, 
 	"mean" real, 
@@ -460,7 +460,7 @@ CREATE TABLE "ts_ixic_pred" (
 	"q90" real 
 ); 
 
-DROP TABLE "ts_effr_pred"
+DROP TABLE "ts_effr_pred";
 CREATE TABLE "ts_effr_pred" ( 
 	"date" date primary key, 
 	"mean" real, 
@@ -473,7 +473,7 @@ CREATE TABLE "ts_effr_pred" (
 	"q90" real 
 ); 
 
-DROP TABLE "ts_csushpisa_pred"
+DROP TABLE "ts_csushpisa_pred";
 CREATE TABLE "ts_csushpisa_pred" ( 
 	"date" date primary key, 
 	"mean" real, 
@@ -486,7 +486,7 @@ CREATE TABLE "ts_csushpisa_pred" (
 	"q90" real 
 ); 
 
-DROP TABLE "ts_gdp_pred"
+DROP TABLE "ts_gdp_pred";
 CREATE TABLE "ts_gdp_pred" ( 
 	"date" date primary key, 
 	"mean" real, 
@@ -499,7 +499,7 @@ CREATE TABLE "ts_gdp_pred" (
 	"q90" real 
 ); 
 
-DROP TABLE "ts_cpiaucsl_pred"
+DROP TABLE "ts_cpiaucsl_pred";
 CREATE TABLE "ts_cpiaucsl_pred" ( 
 	"date" date primary key, 
 	"mean" real, 
@@ -512,7 +512,7 @@ CREATE TABLE "ts_cpiaucsl_pred" (
 	"q90" real 
 ); 
 
-DROP TABLE "ts_cpilfesl_pred"
+DROP TABLE "ts_cpilfesl_pred";
 CREATE TABLE "ts_cpilfesl_pred" ( 
 	"date" date primary key, 
 	"mean" real, 
