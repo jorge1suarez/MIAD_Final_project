@@ -1,9 +1,0 @@
-miad:
-  vars:
-    ansible_user: vagrant
-  children:
-
-    miad_vms:
-      hosts:
-        miad_vm:
-          ansible_host: 192.168.217.110
