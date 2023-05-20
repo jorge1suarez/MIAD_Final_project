@@ -4,19 +4,19 @@ steps:
   entrypoint: bash
   args:
     - -c
-    - docker pull us-central1-docker.pkg.dev/$PROJECT_ID/miad-repo/miad-stock-image:1.0 || exit 0
+    - docker pull us-central1-docker.pkg.dev/$PROJECT_ID/miad-repo/miad-stock-image:latest || exit 0
 
 - name: 'gcr.io/cloud-builders/docker'
   args: 
   - 'build'
   - '-t' 
-  - 'us-central1-docker.pkg.dev/$PROJECT_ID/miad-repo/miad-stock-image:1.1'
+  - 'us-central1-docker.pkg.dev/$PROJECT_ID/miad-repo/miad-stock-image:1.2'
   - '-t' 
   - 'us-central1-docker.pkg.dev/$PROJECT_ID/miad-repo/miad-stock-image:latest'
   - --cache-from
-  - us-central1-docker.pkg.dev/$PROJECT_ID/miad-repo/miad-stock-image:1.0
+  - us-central1-docker.pkg.dev/$PROJECT_ID/miad-repo/miad-stock-image:latest
   - '.' 
 
 images:
-- 'us-central1-docker.pkg.dev/$PROJECT_ID/miad-repo/miad-stock-image:1.1'
+- 'us-central1-docker.pkg.dev/$PROJECT_ID/miad-repo/miad-stock-image:1.2'
 - 'us-central1-docker.pkg.dev/$PROJECT_ID/miad-repo/miad-stock-image:latest'
