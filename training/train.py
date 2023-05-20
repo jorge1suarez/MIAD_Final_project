@@ -196,5 +196,5 @@ def upload_blob(bucket_name, source_file_name, destination_blob_name):
 
 
 if __name__ == '__main__':
-    # train()
+    train()
     upload_model()
