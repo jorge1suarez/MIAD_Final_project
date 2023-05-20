@@ -150,13 +150,13 @@ def validation():
     )
 
 
-    early_stop_callback = pl.callbacks.EarlyStopping(monitor="val_loss", min_delta=1e-4, patience=10, verbose=False, mode="min")
+    # early_stop_callback = pl.callbacks.EarlyStopping(monitor="val_loss", min_delta=1e-4, patience=10, verbose=False, mode="min")
     trainer = pl.Trainer(
-        max_epochs=100,
+        max_epochs=30,
         accelerator="cpu",
         enable_model_summary=True,
         gradient_clip_val=0.1,
-        callbacks=[early_stop_callback],
+        # callbacks=[early_stop_callback],
         limit_train_batches=50,
         enable_checkpointing=True,
     )
