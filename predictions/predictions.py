@@ -7,7 +7,14 @@ import joblib
 from sqlalchemy import create_engine
 import re
 from google.cloud import storage
+import google.cloud.logging
+import logging
 import datetime
+
+client_logging = google.cloud.logging.Client()
+client_logging.setup_logging()
+
+
 
 max_prediction_length = 10
 max_encoder_length = 30
@@ -208,4 +215,7 @@ for ts in ts_columns:
 
 
 print("Done")
+logging.info(f"Predictions at {datetime.datetime.now().strftime('%Y_%m_%d')}, with model_{datetime.datetime.now().strftime('%Y_%m_%d')}, \
+             days predicted (from-to): {df_test_mean['date'].min()} - {df_test_mean['date'].max()}")
+
 conn.close()
