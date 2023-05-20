@@ -225,19 +225,26 @@ def validation():
 
     upload_results()
 
-    # send metrics
     for key, value in metrics.items():
-
         for metric, metric_value in value.items():
-
             if key == 'y': # SP500
-                metric_name = re.sub(r'\W+', '', '^GSPC').lower() + "_" + metric
+                logging.info(f"Validation {'SP500'} {metric}: {metric_value}")
             else:
-                metric_name = re.sub(r'\W+', '', key).lower() + "_" + metric
-            
-            metric_type = f"custom.googleapis.com/{metric_name}"
+                logging.info(f"Validation {key} {metric}: {metric_value}")
 
-            send_custom_metric(metric_type, metric_value)
+    # send metrics
+    # for key, value in metrics.items():
+
+    #     for metric, metric_value in value.items():
+
+    #         if key == 'y': # SP500
+    #             metric_name = re.sub(r'\W+', '', '^GSPC').lower() + "_" + metric
+    #         else:
+    #             metric_name = re.sub(r'\W+', '', key).lower() + "_" + metric
+            
+    #         metric_type = f"custom.googleapis.com/{metric_name}"
+
+    #         send_custom_metric(metric_type, metric_value)
 
     
     print("validation DONE")
