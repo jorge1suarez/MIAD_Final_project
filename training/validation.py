@@ -233,11 +233,11 @@ def validation():
         for metric, metric_value in value.items():
 
             if key == 'y': # SP500
-                metric_name = re.sub(r'\W+', '', '^GSPC').lower() 
+                metric_name = re.sub(r'\W+', '', '^GSPC').lower() + "_" + metric
             else:
-                metric_name = re.sub(r'\W+', '', key).lower()
+                metric_name = re.sub(r'\W+', '', key).lower() + "_" + metric
             
-            metric_type = f"custom.googleapis.com/{key}_{metric_name}"
+            metric_type = f"custom.googleapis.com/{metric_name}"
 
             send_custom_metric(metric_type, metric_value)
 
