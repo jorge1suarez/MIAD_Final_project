@@ -21,7 +21,7 @@ import google.cloud.logging
 import logging
 from google.cloud import monitoring_v3
 from sklearn.metrics import mean_absolute_error, mean_squared_error
-
+import re
 
 client_logging = google.cloud.logging.Client()
 client_logging.setup_logging()
@@ -226,12 +226,18 @@ def validation():
         json.dump(metrics, file)
 
     upload_results()
-    
+
     # send metrics
     for key, value in metrics.items():
 
         for metric, metric_value in value.items():
-            metric_type = f"custom.googleapis.com/{key}_{metric}"
+
+            if key == 'y': # SP500
+                metric_name = re.sub(r'\W+', '', '^GSPC').lower() 
+            else:
+                metric_name = re.sub(r'\W+', '', key).lower()
+            
+            metric_type = f"custom.googleapis.com/{key}_{metric_name}"
 
             send_custom_metric(metric_type, metric_value)
 
@@ -263,7 +269,7 @@ def send_custom_metric(metric_type, metric_value):
     
     series = monitoring_v3.TimeSeries()
     series.metric.type = metric_type
-    series.resource.type = "global"
+    series.resource.type = "gce_instance"
 
     now = time.time()
     seconds = int(now)
