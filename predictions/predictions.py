@@ -22,28 +22,28 @@ prediction_length = max_prediction_length
 storage_client = storage.Client()
 bucket = storage_client.bucket("miad-bucket")
 blob = bucket.blob(f'model_{datetime.datetime.now().strftime("%Y_%m_%d")}/ts_scaler')
-blob.download_to_file("ts_scaler")
+blob.download_to_filename("./ts_scaler")
 
 blob = bucket.blob(f'model_{datetime.datetime.now().strftime("%Y_%m_%d")}/train_series')
-blob.download_to_file("train_series")
+blob.download_to_filename("./train_series")
 
 blob = bucket.blob(f'model_{datetime.datetime.now().strftime("%Y_%m_%d")}/TimeSeriesDataSet_training')
-blob.download_to_file("TimeSeriesDataSet_training")
+blob.download_to_filename("./TimeSeriesDataSet_training")
 
 blob = bucket.blob(f'model_{datetime.datetime.now().strftime("%Y_%m_%d")}/model')
-blob.download_to_file("model")
+blob.download_to_filename("./model")
 
 # Load scaler
-ts_scaler = joblib.load('ts_scaler') 
+ts_scaler = joblib.load('./ts_scaler') 
 
 # load pandas dataframe training
-train_series = pd.read_pickle('train_series')
+train_series = pd.read_pickle('./train_series')
 print(train_series.tail())
 # torch ts dataset
-training = TimeSeriesDataSet.load("TimeSeriesDataSet_training")
+training = TimeSeriesDataSet.load("./TimeSeriesDataSet_training")
 
 # load train model
-best_model = torch.load('model')
+best_model = torch.load('./model')
 print(best_model)
 
 
