@@ -202,7 +202,7 @@ def objective(trial):
 
 def upload_results():
      # upload to google cloud storage bucket
-    upload_blob('miad-bucket', './hyperparameters.json', f"models/hyperparameters{datetime.datetime.now().strftime('%Y_%m_%d')}.json")
+    upload_blob('miad-bucket', './hyperparameters.json', f"tune/hyperparameters{datetime.datetime.now().strftime('%Y_%m_%d')}.json")
 
 
 def upload_blob(bucket_name, source_file_name, destination_blob_name):

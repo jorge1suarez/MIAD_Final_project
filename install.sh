@@ -28,3 +28,4 @@ pip install psycopg2-binary sqlalchemy scipy
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
 pip install pytorch-forecasting
 pip install pytorch-lightning
+pip install optuna
