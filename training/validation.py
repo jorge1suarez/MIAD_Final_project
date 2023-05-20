@@ -26,9 +26,7 @@ import re
 client_logging = google.cloud.logging.Client()
 client_logging.setup_logging()
 
-client_metrics = monitoring_v3.MetricServiceClient()
-project_id = "miadfinal"
-project_name = f"projects/{project_id}"
+
 
 def validation():
     # Download Data
@@ -267,6 +265,10 @@ def upload_blob(bucket_name, source_file_name, destination_blob_name):
 def send_custom_metric(metric_type, metric_value):
     """Sends a custom metric to Google Cloud Monitoring."""
     
+    client_metrics = monitoring_v3.MetricServiceClient()
+    project_id = "miadfinal"
+    project_name = f"projects/{project_id}"
+
     series = monitoring_v3.TimeSeries()
     series.metric.type = metric_type
     series.resource.type = "gce_instance"
@@ -285,6 +287,7 @@ def send_custom_metric(metric_type, metric_value):
 
     client_metrics.create_time_series(request={"name": project_name, "time_series": [series]})
     print(f"Successfully wrote time series {metric_type}.")
+
 
 
 def mape_metric(y_true, y_pred):
