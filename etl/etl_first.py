@@ -26,12 +26,16 @@ print(f"Downloading data from:{date_start} to:{date_end}")
 
 tickers = ["^GSPC", 'AAPL', 'MSFT','GOOG','GOOGL','TSLA','AMZN','BRK-A','BRK-B','NVDA','META','UNH','BZ=F','NG=F', 'GC=F', 'EURUSD=X','^VIX','^IXIC']
 
+from_date = None
+to_date = None
+
 for ticker in tickers:
     print(f"Downloading data for ticker: {ticker}")
     stock_data = yfinance.download(ticker, start=date_start, end=date_end)
     stock_data = stock_data.dropna()
     df = stock_data.reset_index().rename(columns={'Date':'date', 'Open':'open', 'High':'high', 'Low':'low', 'Close':'close', 'Adj Close':'adj_close', 'Volume':'volume'})
-    
+    from_date = df['date'].min()
+    to_date = df['date'].max()
 
     table_name = "ts_" + re.sub(r'\W+', '', ticker).lower() # remove special characters from ticker and lower case
 
@@ -69,6 +73,6 @@ print(f"Wrote data to Table date_table, rows: {df.shape[0]}")
 
 print("Done")
 logging.info(f"ETL done at {datetime.datetime.now().strftime('%Y_%m_%d')}, \
-             days downloaded (from-to): {date_start} - {date_end}")
+             days downloaded (from-to): {from_date} - {to_date}")
 
 conn.close()
