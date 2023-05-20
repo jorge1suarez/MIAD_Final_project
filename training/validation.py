@@ -271,6 +271,7 @@ def send_custom_metric(metric_type, metric_value):
 
     series = monitoring_v3.TimeSeries()
     series.metric.type = metric_type
+    series.metric.labels["serie"] = "miad"
     series.resource.type = "gce_instance"
     series.resource.labels["instance_id"] = "410681636358977934"
     series.resource.labels["zone"] = "us-central1-a"
@@ -287,6 +288,7 @@ def send_custom_metric(metric_type, metric_value):
 
     client_metrics.create_time_series(request={"name": project_name, "time_series": [series]})
     print(f"Successfully wrote time series {metric_type}.")
+    time.sleep(5)
 
 
 
