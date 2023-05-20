@@ -175,10 +175,10 @@ def train():
 
 def upload_model():
      # upload to google cloud storage bucket
-    upload_blob('miad-bucket', './ts_scaler_latest', f'model_{datetime.datetime.now().strftime("%Y_%m_%d")}/ts_scaler')
-    upload_blob('miad-bucket', './train_series_latest', f'model_{datetime.datetime.now().strftime("%Y_%m_%d")}/train_series')
-    upload_blob('miad-bucket', './TimeSeriesDataSet_training_latest', f'model_{datetime.datetime.now().strftime("%Y_%m_%d")}/TimeSeriesDataSet_training')
-    upload_blob('miad-bucket', './model_latest', f'models_{datetime.datetime.now().strftime("%Y_%m_%d")}/model')
+    upload_blob('miad-bucket', './ts_scaler', f'model_{datetime.datetime.now().strftime("%Y_%m_%d")}/ts_scaler')
+    upload_blob('miad-bucket', './train_series', f'model_{datetime.datetime.now().strftime("%Y_%m_%d")}/train_series')
+    upload_blob('miad-bucket', './TimeSeriesDataSet_training', f'model_{datetime.datetime.now().strftime("%Y_%m_%d")}/TimeSeriesDataSet_training')
+    upload_blob('miad-bucket', './model', f'models_{datetime.datetime.now().strftime("%Y_%m_%d")}/model')
 
 
 def upload_blob(bucket_name, source_file_name, destination_blob_name):

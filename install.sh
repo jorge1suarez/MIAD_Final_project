@@ -24,6 +24,7 @@ conda activate api
 conda install python=3.10.11 -y
 
 conda install pandas numpy scikit-learn -y
+pip install yfinance pandas_datareader ta
 pip install psycopg2-binary sqlalchemy scipy
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
 pip install pytorch-forecasting
