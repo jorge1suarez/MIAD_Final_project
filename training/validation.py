@@ -28,6 +28,7 @@ client_logging.setup_logging()
 
 client_metrics = monitoring_v3.MetricServiceClient()
 project_id = "project_id"
+project_name = f"projects/{project_id}"
 
 def validation():
     # Download Data
@@ -229,10 +230,8 @@ def validation():
 
         for metric, metric_value in value.items():
             metric_type = f"custom.googleapis.com/{key}_{metric}"
-            metric_labels = {}
-            metric_value = metric_value
 
-            send_custom_metric(project_id, metric_type, metric_labels, metric_value)
+            send_custom_metric(metric_type, metric_value)
 
     
     print("validation DONE")
@@ -257,23 +256,25 @@ def upload_blob(bucket_name, source_file_name, destination_blob_name):
     )
 
 
-def send_custom_metric(project_id, metric_type, metric_labels, metric_value):
+def send_custom_metric(metric_type, metric_value):
     """Sends a custom metric to Google Cloud Monitoring."""
-    client = monitoring_v3.MetricServiceClient()
-    project_name = f"projects/{project_id}"
-
+    
     series = monitoring_v3.TimeSeries()
-    series.metric.type = f"{project_name}/metricDescriptors/{metric_type}"
+    series.metric.type = metric_type
     series.resource.type = "global"
 
-    point = series.points.add()
-    point.value.double_value = metric_value
-    point.interval.end_time.seconds = int(time.time())
+    now = time.time()
+    seconds = int(now)
+    nanos = int((now - seconds) * 10 ** 9)
+    interval = monitoring_v3.TimeInterval(
+        {"end_time": {"seconds": seconds, "nanos": nanos}}
+    )
 
-    for label_key, label_value in metric_labels.items():
-        series.metric.labels[label_key] = label_value
+    point = monitoring_v3.Point({"interval": interval, "value": {"double_value": metric_value}})
+    series.points = [point]
 
-    client.create_time_series(request={"name": project_name, "time_series": [series]})
+    client_metrics.create_time_series(request={"name": project_name, "time_series": [series]})
+    print(f"Successfully wrote time series {metric_type}.")
 
 
 def mape_metric(y_true, y_pred):
