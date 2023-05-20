@@ -6,7 +6,8 @@ from pytorch_forecasting import Baseline, DeepAR, TimeSeriesDataSet
 import joblib
 from sqlalchemy import create_engine
 import re
-
+from google.cloud import storage
+import datetime
 
 max_prediction_length = 10
 max_encoder_length = 30
@@ -18,18 +19,31 @@ context_length = max_encoder_length
 prediction_length = max_prediction_length
 
 
+storage_client = storage.Client()
+bucket = storage_client.bucket("miad-bucket")
+blob = bucket.blob(f'model_{datetime.datetime.now().strftime("%Y_%m_%d")}/ts_scaler')
+blob.download_as_file("ts_scaler")
+
+blob = bucket.blob(f'model_{datetime.datetime.now().strftime("%Y_%m_%d")}/train_series')
+blob.download_as_file("train_series")
+
+blob = bucket.blob(f'model_{datetime.datetime.now().strftime("%Y_%m_%d")}/TimeSeriesDataSet_training')
+blob.download_as_file("TimeSeriesDataSet_training")
+
+blob = bucket.blob(f'model_{datetime.datetime.now().strftime("%Y_%m_%d")}/model')
+blob.download_as_file("model")
 
 # Load scaler
-ts_scaler = joblib.load('ts_scaler_v3') 
+ts_scaler = joblib.load('ts_scaler') 
 
 # load pandas dataframe training
-train_series = pd.read_pickle('train_series_v3')
+train_series = pd.read_pickle('train_series')
 print(train_series.tail())
 # torch ts dataset
-training = TimeSeriesDataSet.load("TimeSeriesDataSet_training_v3")
+training = TimeSeriesDataSet.load("TimeSeriesDataSet_training")
 
 # load train model
-best_model = torch.load('model_v3')
+best_model = torch.load('model')
 print(best_model)
 
 
@@ -81,8 +95,10 @@ df_test_mean = pd.DataFrame()
 df_test_lower = pd.DataFrame()
 df_test_upper = pd.DataFrame()
 
-df_test_q10 = pd.DataFrame()
-df_test_q90 = pd.DataFrame()
+df_test_q2_5 = pd.DataFrame()
+df_test_q5 = pd.DataFrame()
+df_test_q95 = pd.DataFrame()
+df_test_q97_5 = pd.DataFrame()
 df_test_q25 = pd.DataFrame()
 df_test_q75 = pd.DataFrame()
 df_test_q50 = pd.DataFrame()
@@ -94,9 +110,13 @@ for index, row in prediction.index.iterrows():
     df_test_lower[str(row['series'])] = ts_predict.min(axis=1)
     df_test_upper[str(row['series'])] = ts_predict.max(axis=1)
     
+    #95% prediction interval
+    df_test_q2_5[str(row['series'])] = np.quantile(ts_predict, q=0.25, axis = 1)
+    df_test_q97_5[str(row['series'])] = np.quantile(ts_predict, q=0.975, axis = 1)
+
     #90% prediction interval
-    df_test_q10[str(row['series'])] = np.quantile(ts_predict, q=0.1, axis = 1)
-    df_test_q90[str(row['series'])] = np.quantile(ts_predict, q=0.9, axis = 1)
+    df_test_q5[str(row['series'])] = np.quantile(ts_predict, q=0.5, axis = 1)
+    df_test_q95[str(row['series'])] = np.quantile(ts_predict, q=0.95, axis = 1)
 
     #50% prediction interval
     df_test_q25[str(row['series'])] = np.quantile(ts_predict, q=0.25, axis = 1)
@@ -111,8 +131,10 @@ df_test_mean[ts_columns] = ts_scaler.inverse_transform(df_test_mean[ts_columns].
 df_test_lower[ts_columns] = ts_scaler.inverse_transform(df_test_lower[ts_columns].values)
 df_test_upper[ts_columns] = ts_scaler.inverse_transform(df_test_upper[ts_columns].values)
 
-df_test_q10[ts_columns] = ts_scaler.inverse_transform(df_test_q10[ts_columns].values)
-df_test_q90[ts_columns] = ts_scaler.inverse_transform(df_test_q90[ts_columns].values)
+df_test_q2_5[ts_columns] = ts_scaler.inverse_transform(df_test_q2_5[ts_columns].values)
+df_test_q5[ts_columns] = ts_scaler.inverse_transform(df_test_q5[ts_columns].values)
+df_test_q95[ts_columns] = ts_scaler.inverse_transform(df_test_q95[ts_columns].values)
+df_test_q97_5[ts_columns] = ts_scaler.inverse_transform(df_test_q97_5[ts_columns].values)
 df_test_q25[ts_columns] = ts_scaler.inverse_transform(df_test_q25[ts_columns].values)
 df_test_q75[ts_columns] = ts_scaler.inverse_transform(df_test_q75[ts_columns].values)
 df_test_q50[ts_columns] = ts_scaler.inverse_transform(df_test_q50[ts_columns].values)
@@ -121,8 +143,10 @@ df_test_mean['date'] = date_range.values
 df_test_lower['date'] = date_range.values
 df_test_upper['date'] = date_range.values
 
-df_test_q10['date'] = date_range.values
-df_test_q90['date'] = date_range.values
+df_test_q2_5['date'] = date_range.values
+df_test_q5['date'] = date_range.values
+df_test_q95['date'] = date_range.values
+df_test_q97_5['date'] = date_range.values
 df_test_q25['date'] = date_range.values
 df_test_q75['date'] = date_range.values
 df_test_q50['date'] = date_range.values
@@ -148,11 +172,13 @@ for ts in ts_columns:
         df['mean'] = df_test_mean[ts]
         df['min'] = df_test_lower[ts]
         df['max'] = df_test_upper[ts]
-        df['q10'] = df_test_q10[ts]
+        df['q2_5'] = df_test_q2_5[ts]
+        df['q5'] = df_test_q5[ts]
         df['q25'] = df_test_q25[ts]
         df['q50'] = df_test_q50[ts]
         df['q75'] = df_test_q75[ts]
-        df['q90'] = df_test_q90[ts]
+        df['q95'] = df_test_q95[ts]
+        df['q97_5'] = df_test_q97_5[ts]
 
         df.to_sql(table_name, con=conn, if_exists='replace', index=False)
         conn.commit()
@@ -166,11 +192,14 @@ for ts in ts_columns:
         df['mean'] = df_test_mean[ts]
         df['min'] = df_test_lower[ts]
         df['max'] = df_test_upper[ts]
-        df['q10'] = df_test_q10[ts]
+        df['q2_5'] = df_test_q2_5[ts]
+        df['q5'] = df_test_q5[ts]
         df['q25'] = df_test_q25[ts]
         df['q50'] = df_test_q50[ts]
         df['q75'] = df_test_q75[ts]
-        df['q90'] = df_test_q90[ts]
+        df['q95'] = df_test_q95[ts]
+        df['q97_5'] = df_test_q97_5[ts]
+
 
         df.to_sql(table_name, con=conn, if_exists='replace', index=False)
         conn.commit()
