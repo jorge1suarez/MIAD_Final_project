@@ -27,7 +27,7 @@ client_logging = google.cloud.logging.Client()
 client_logging.setup_logging()
 
 client_metrics = monitoring_v3.MetricServiceClient()
-project_id = "project_id"
+project_id = "miadfinal"
 project_name = f"projects/{project_id}"
 
 def validation():
