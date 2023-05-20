@@ -18,6 +18,7 @@ conda install python=3.9 -y
 conda install pandas numpy seaborn -y
 pip install yfinance pandas_datareader ta
 pip install psycopg2-binary sqlalchemy 
+pip install google-cloud-logging google-cloud-storage
 
 
 conda activate api

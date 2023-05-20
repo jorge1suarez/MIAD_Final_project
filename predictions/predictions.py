@@ -215,7 +215,7 @@ for ts in ts_columns:
 
 
 print("Done")
-logging.info(f"Predictions at {datetime.datetime.now().strftime('%Y_%m_%d')}, with model_{datetime.datetime.now().strftime('%Y_%m_%d')}, \
+logging.info(f"Predictions done at {datetime.datetime.now().strftime('%Y_%m_%d')}, with model_{datetime.datetime.now().strftime('%Y_%m_%d')}, \
              days predicted (from-to): {df_test_mean['date'].min()} - {df_test_mean['date'].max()}")
 
 conn.close()

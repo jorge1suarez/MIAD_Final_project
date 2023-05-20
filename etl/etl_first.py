@@ -6,6 +6,11 @@ import datetime
 from sqlalchemy import create_engine
 import re
 import pandas as pd
+import google.cloud.logging
+import logging
+
+client_logging = google.cloud.logging.Client()
+client_logging.setup_logging()
 
 
 # change url postgresql
@@ -63,4 +68,7 @@ print(f"Wrote data to Table date_table, rows: {df.shape[0]}")
 
 
 print("Done")
+logging.info(f"ETL done at {datetime.datetime.now().strftime('%Y_%m_%d')}, \
+             days downloaded (from-to): {date_start} - {date_end}")
+
 conn.close()

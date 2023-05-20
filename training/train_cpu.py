@@ -15,6 +15,12 @@ from sklearn.preprocessing import MinMaxScaler
 from google.cloud import storage
 import joblib
 
+import google.cloud.logging
+import logging
+
+client_logging = google.cloud.logging.Client()
+client_logging.setup_logging()
+
 
 
 def train():
@@ -198,3 +204,6 @@ def upload_blob(bucket_name, source_file_name, destination_blob_name):
 if __name__ == '__main__':
     train()
     upload_model()
+
+    logging.info(f"Training done at {datetime.datetime.now().strftime('%Y_%m_%d')}, save model_{datetime.datetime.now().strftime('%Y_%m_%d')}")
+
