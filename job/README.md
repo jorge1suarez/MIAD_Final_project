@@ -1,7 +1,32 @@
-
-
+make executable
 ```bash
-chmod +x run.sh
+chmod +x /home/freddy_12_120/MIAD_Final_project/job/run.sh
+```
 
-0 2 * * 1-5 /home/freddy_12_120/MIAD_Final_project/job/run.sh
+crontab -e
+```bash
+
+SHELL=/bin/bash
+BASH_ENV=~/.bashrc_conda
+
+0 2 * * 2-6 /home/freddy_12_120/MIAD_Final_project/job/run.sh
+```
+
+
+bashrc_conda
+```bash
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/freddy_12_120/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/freddy_12_120/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/freddy_12_120/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/freddy_12_120/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 ```
