@@ -225,6 +225,8 @@ def validation():
     with open("metrics.json", "w") as file:
         json.dump(metrics, file)
 
+    upload_results()
+    
     # send metrics
     for key, value in metrics.items():
 
@@ -288,6 +290,6 @@ def smape_metric(y_true, y_pred):
 
 if __name__ == '__main__':
     validation()
-    upload_results()
+    #upload_results()
     logging.info(f"Validation done at {datetime.datetime.now().strftime('%Y_%m_%d')}")
 
