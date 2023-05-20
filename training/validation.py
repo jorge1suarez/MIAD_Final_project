@@ -139,12 +139,10 @@ def validation():
     batch_size = 128
     # synchronize samples in each batch over time - only necessary for DeepVAR, not for DeepAR
     
-    global train_dataloader
     train_dataloader = training.to_dataloader(
         train=True, batch_size=batch_size, num_workers=0, batch_sampler="synchronized"
     )
 
-    global val_dataloader
     val_dataloader = validation.to_dataloader(
         train=False, batch_size=batch_size, num_workers=0, batch_sampler="synchronized"
     )
@@ -156,7 +154,7 @@ def validation():
         accelerator="cpu",
         enable_model_summary=True,
         gradient_clip_val=0.1,
-        # callbacks=[early_stop_callback],
+    #     callbacks=[early_stop_callback],
         limit_train_batches=50,
         enable_checkpointing=True,
     )
