@@ -118,11 +118,11 @@ for index, row in prediction.index.iterrows():
     df_test_upper[str(row['series'])] = ts_predict.max(axis=1)
     
     #95% prediction interval
-    df_test_q2_5[str(row['series'])] = np.quantile(ts_predict, q=0.25, axis = 1)
+    df_test_q2_5[str(row['series'])] = np.quantile(ts_predict, q=0.025, axis = 1)
     df_test_q97_5[str(row['series'])] = np.quantile(ts_predict, q=0.975, axis = 1)
 
     #90% prediction interval
-    df_test_q5[str(row['series'])] = np.quantile(ts_predict, q=0.5, axis = 1)
+    df_test_q5[str(row['series'])] = np.quantile(ts_predict, q=0.05, axis = 1)
     df_test_q95[str(row['series'])] = np.quantile(ts_predict, q=0.95, axis = 1)
 
     #50% prediction interval
